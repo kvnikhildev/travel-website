@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel With Us</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Explore Our Destinations</h1>
+    <div class="grid">
+        {% for dest in destinations %}
+        <div class="card">
+            <img src="{{ dest.image }}" alt="{{ dest.name }}">
+            <h2>{{ dest.name }}</h2>
+            <p>{{ dest.description }}</p>
+            <a href="{{ url_for('destination', name=dest.name) }}">Learn more</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
+
+
+
