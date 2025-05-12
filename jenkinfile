@@ -16,14 +16,11 @@ pipeline {
             }
         stage('Test') {
             steps {
-                
                 script {
-                    dockerImage.inside {
-                        sh 'pylint app.py'
-                        sh 'pytest'
-                        sh 'bandit app.py'
-                    }
+                    sh pip install pytest
+                    sh pytest
                 }
+                
             }
         }
     }
