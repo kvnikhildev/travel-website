@@ -7,5 +7,13 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/kvnikhildev/travel-website.git'
             }
         }
+        stage('Build') {
+            steps {
+            
+                    docker build -t travel-website .    
+                }
+            }
+
+        
     }
 }
