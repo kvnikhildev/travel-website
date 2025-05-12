@@ -16,10 +16,10 @@ pipeline {
             }
         stage('Test') {
             steps {
-                script {
-                    sh pip install pytest
-                    sh pytest
-                }
+                
+                sh pip install pytest
+                sh   pytest
+            
                 
             }
         }
