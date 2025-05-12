@@ -11,9 +11,15 @@ pipeline {
             steps {
             
                  sh 'docker build -t travel-website .'    
-                 
+
                 }
             }
-        
+        stage('Test') {
+            steps {
+                sh 'pylint'
+                sh 'pytest'
+                sh 'bandit app.py'
+            }
+        }
     }
 }
