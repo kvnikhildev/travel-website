@@ -16,11 +16,9 @@ pipeline {
             }
         stage('Test') {
             steps {
-                
-                sh 'pip install pytest'
-                sh 'pytest'
-            
-                
+                script {
+                  sh 'docker run --rm travel-website pytest'
+                }   
             }
         }
     }
