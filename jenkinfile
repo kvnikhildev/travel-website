@@ -10,10 +10,10 @@ pipeline {
         stage('Build') {
             steps {
             
-                    docker build -t travel-website .    
+                 sh 'docker build -t travel-website .'    
+                 
                 }
             }
-
         
     }
 }
