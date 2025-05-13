@@ -20,7 +20,7 @@ pipeline {
                   sh 'docker run --rm -v $PWD/output:/app/output travel-website pytest --junitxml=/app/output/pytest_results.xml' 
                   junit 'output/pytest_results.xml'
                   sh 'docker run --rm -v $PWD/output:/app/output travel-website sh -c "pylint app.py > /app/output/pylint_results.txt" || true'
-                  sh 'docker run --rm travel-website bandit -r app.py || true'
+                  sh 'docker run --rm -v $PWD/output:/app/output travel-website bandit -r . -f txt -o /app/output/bandit-report.txt || true'
                 }   
             }
         }
