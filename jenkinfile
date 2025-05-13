@@ -17,7 +17,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                  sh 'docker run --rm travel-website pytest -v '
+                  sh 'docker run --rm -v $PWD/output:/app/output travel-website pytest --junitxml=/app/output/results.xml' junit 'output/test_results.xml'
                   sh 'docker run --rm travel-website pylint app.py || true'
                   sh 'docker run --rm travel-website bandit -r app.py || true'
                 }   
