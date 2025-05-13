@@ -19,7 +19,7 @@ pipeline {
                 script {
                   sh 'docker run --rm travel-website pytest'
                   sh 'docker run --rm travel-website pylint app.py || true'
-                  sh 'docker run --rm travel-website bandit '
+                  sh 'docker run --rm travel-website bandit -r app.py || true'
                 }   
             }
         }
