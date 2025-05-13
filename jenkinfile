@@ -22,10 +22,20 @@ pipeline {
                   sh 'docker run --rm -v $PWD/output:/app/output travel-website sh -c "pylint app.py > /app/output/pylint_results.txt" || true'
                   sh 'docker run --rm -v $PWD/output:/app/output travel-website bandit -r . -f txt -o /app/output/bandit-report.txt || true'
                   // Archive analysis reports
-                  archiveArtifacts artifacts: 'output/pylint_results.txt, output/bandit-report.txt,pytest_results.xml', fingerprint: true
+                  archiveArtifacts artifacts: 'output/pylint_results.txt, output/bandit-report.txt', fingerprint: true
 
                 }   
             }
         }
+        stage('Static Code Analysis') {
+      environment {
+        SONAR_URL = "http://192.168.50.240:9000"
+           }
+      steps {
+        withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_AUTH_TOKEN')]) {
+          sh 'sonar-scanner -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
+        }
+      }
     }
+   }
 }
