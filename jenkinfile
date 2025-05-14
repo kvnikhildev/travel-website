@@ -33,7 +33,17 @@ pipeline {
            }
       steps {
         withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_AUTH_TOKEN')]) {
-          sh 'sonar-scanner -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
+          sh '''
+                docker run --rm \
+               -e SONAR_HOST_URL=$SONAR_URL \
+               -e SONAR_LOGIN=$SONAR_AUTH_TOKEN \
+               -v $PWD:/usr/src \
+               sonarsource/sonar-scanner-cli \
+               -Dsonar.projectKey=travel-website \
+               -Dsonar.sources=. \
+               -Dsonar.language=py \
+               -Dsonar.python.version=3.9
+            '''
         }
       }
     }
