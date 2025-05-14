@@ -41,7 +41,7 @@ pipeline {
                -Dsonar.projectKey=travel-website \
                -Dsonar.sources=. \
                -Dsonar.language=py \
-               -Dsonar.python.coverage.reportPaths=pytest_results.xml \
+               -Dsonar.python.coverage.reportPaths=pytest_results.xml 
             '''
         }
       }
