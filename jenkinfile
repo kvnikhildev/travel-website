@@ -17,8 +17,8 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                  docker run --rm -v $PWD/output:/app/output travel-website \
-                  sh -c "pytest --cov=. --cov-report=xml:/app/output/coverage.xml --junitxml=/app/output/pytest_results.xml" 
+                  sh 'docker run --rm -v $PWD/output:/app/output travel-website \
+                  sh -c "pytest --cov=. --cov-report=xml:/app/output/coverage.xml --junitxml=/app/output/pytest_results.xml'
                   // Publish test results in Jenkins UI
                   junit 'output/pytest_results.xml'
                   sh 'docker run --rm -v $PWD/output:/app/output travel-website sh -c "pylint app.py > /app/output/pylint_results.txt" || true'
