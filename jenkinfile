@@ -34,7 +34,8 @@ pipeline {
       steps {
         withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_AUTH_TOKEN')]) {
           sh '''
-                docker run --rm \
+               docker run --rm \
+               --network=host \
                -e SONAR_HOST_URL=$SONAR_URL \
                -e SONAR_LOGIN=$SONAR_AUTH_TOKEN \
                -v $PWD:/usr/src \
