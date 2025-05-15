@@ -50,6 +50,7 @@ pipeline {
     stage('push to docker hub') {
         environment {
             DOCKER_IMAGE = "kvnikhill/travel-website:${BUILD_NUMBER}"
+            REGISTRY_CREDENTIALS = credentials('docker-hub')
         }
         steps {
             script {
