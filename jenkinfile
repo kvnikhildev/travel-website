@@ -47,5 +47,20 @@ pipeline {
         }
       }
     }
+    stage('push to docker hub') {
+        environment {
+            DOCKER_IMAGE = "kavnikhil/travel-website:${BUILD_NUMBER}"
+        }
+        steps {
+            script {
+                docker.buiild("${DOCKER_IMAGE}")
+                def dockerImage = docker.image("${DOCKER_IMAGE}")
+                docker.withRegistry('https://index.docker.io/v1/', 'docker-hub') {
+                    dockerImage.push()
+                } 
+            }
+        }
+    }
+
    }
 }
