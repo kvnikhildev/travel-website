@@ -49,7 +49,7 @@ pipeline {
     }
     stage('push to docker hub') {
         environment {
-            DOCKER_IMAGE = "kavnikhil/travel-website:${BUILD_NUMBER}"
+            DOCKER_IMAGE = "kvnikhil/travel-website:${BUILD_NUMBER}"
         }
         steps {
             script {
