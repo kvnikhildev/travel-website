@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: travel websit
+  name: travel-websit
   labels:
     app: travel
 spec:
@@ -17,4 +17,5 @@ spec:
       containers:
       - name: travel
         image: kvnikhill/flipkart-demo:replaceWithYourImage
-      - containerPort: 5000
+        ports:
+        - containerPort: 5000
