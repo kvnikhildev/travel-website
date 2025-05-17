@@ -72,8 +72,7 @@ pipeline {
         withCredentials([string(credentialsId: 'github-credentials', variable: 'GIT_TOKEN')]) {
             sh """
                 git config --global user.email "kvnihkill@gmail.com"
-                sh ls
-                cd k8
+                
                 git config --global user.name "kvnikhildev"
                 cp k8/Deployment.template.yml /k8/Deployment.yml
                 sed -i "s/replaceWithYourImage/${BUILD_NUMBER}/g" /k8/Deployment.yml 
