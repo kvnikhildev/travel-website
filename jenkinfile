@@ -64,7 +64,7 @@ pipeline {
     }
     stage('Push deployment.yaml to GitHub') {
     environment {
-        GIT_REPO = 'https://github.com/kvnikhildev/travel-website.git'
+        GIT_REPO = 'kvnikhildev/travel-website.git'
         GIT_BRANCH = 'main'
 
          }
@@ -79,7 +79,7 @@ pipeline {
                 sed -i "s/replaceWithYourImage/${BUILD_NUMBER}/g" k8/Deployment.yml 
                 git add k8/Deployment.yml
                 git commit -m "Update deployment.yaml from Jenkins Build #$BUILD_NUMBER"
-                git push ${GIT_TOKEN}@${GIT_REPO} HEAD:${GIT_BRANCH}
+                git push https://github.com/${GIT_REPO} HEAD:${GIT_BRANCH}
             """
              }
           }
