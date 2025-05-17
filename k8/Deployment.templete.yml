@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: travel
-        image: kvnikhill/flipkart-demo:replaceWithYourImage
+        image: kvnikhill/travel-website:replaceWithYourImage
         ports:
         - containerPort: 5000
