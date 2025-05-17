@@ -79,7 +79,7 @@ pipeline {
                 sed -i "s/replaceWithYourImage/${BUILD_NUMBER}/g" k8/Deployment.yml 
                 git add k8/Deployment.yml
                 git commit -m "Update deployment.yaml from Jenkins Build #$BUILD_NUMBER"
-                GIT_URL="git push https://${GIT_TOKEN}@github.com/${GIT_REPO}.git"
+                GIT_URL="https://${GIT_TOKEN}@github.com/${GIT_REPO}.git"
                 git push "$GIT_URL" HEAD:$GIT_BRANCH"
             """
              }
