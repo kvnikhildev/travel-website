@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: travel
-        image: kvnikhill/travel-website:65
+        image: kvnikhill/travel-website:66
         ports:
         - containerPort: 5000
