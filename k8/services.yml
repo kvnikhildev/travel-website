@@ -4,8 +4,10 @@ metadata:
   name: travel
 spec:
   selector:
-    app.kubernetes.io/name: travel
+    app: travel
   ports:
     - protocol: TCP
       port: 5000
       targetPort: 5000
+  type:
+    NodePort
