@@ -70,7 +70,7 @@ pipeline {
          }
       steps {
         withCredentials([string(credentialsId: 'github-credentials', variable: 'GIT_TOKEN')]) {
-            sh """
+            sh '''
                 git config --global user.email "kvnihkill@gmail.com"
                 ls
                 ls -l k8/
@@ -80,8 +80,8 @@ pipeline {
                 git add k8/Deployment.yml
                 git commit -m "Update deployment.yaml from Jenkins Build #$BUILD_NUMBER"
                 GIT_URL="https://${GIT_TOKEN}@github.com/${GIT_REPO}.git"
-                git push "$GIT_URL" HEAD:$GIT_BRANCH"
-            """
+                git push "$GIT_URL" HEAD:"$GIT_BRANCH"
+            '''
              }
           }
         }
