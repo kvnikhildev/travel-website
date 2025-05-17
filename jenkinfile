@@ -72,8 +72,10 @@ pipeline {
         withCredentials([string(credentialsId: 'github-credentials', variable: 'GIT_TOKEN')]) {
             sh """
                 git config --global user.email "kvnihkill@gmail.com"
+                sh ls
+                cd k8
                 git config --global user.name "kvnikhildev"
-                cp /k8/Deployment.template.yml /k8/Deployment.yml
+                cp k8/Deployment.template.yml /k8/Deployment.yml
                 sed -i "s/replaceWithYourImage/${BUILD_NUMBER}/g" /k8/Deployment.yml 
                 git add /k8/Deployment.yml
                 git commit -m "Update deployment.yaml from Jenkins Build #$BUILD_NUMBER"
