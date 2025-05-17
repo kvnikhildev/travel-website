@@ -73,7 +73,7 @@ pipeline {
             sh """
                 git config --global user.email "kvnihkill@gmail.com"
                 ls
-                cd k8
+                ls -l k8/
                 git config --global user.name "kvnikhildev"
                 cp k8/Deployment_templete.yml k8/Deployment.yml
                 sed -i "s/replaceWithYourImage/${BUILD_NUMBER}/g" k8/Deployment.yml 
